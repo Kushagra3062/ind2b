@@ -1,0 +1,8 @@
+user_id,product_id,event_type,weight
+1,1,purchase,5
+1,2,purchase,5
+1,11,purchase,5
+1,28,purchase,5
+1,29,purchase,5
+1,30,purchase,5
+1,43,purchase,5
