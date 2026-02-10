@@ -1,0 +1,3 @@
+﻿Warning: Could not load trained models ([Errno 2] No such file or directory: 'D:\\ind2b\\ind2b_recommender\\models\\tfidf_matrix.pkl'). Retraining on startup...
+--- Testing Filtering: category='adhesives', search_term='Asian Paints adhesives' ---
+Success! Found 0 products.

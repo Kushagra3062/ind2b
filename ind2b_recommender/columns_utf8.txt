@@ -1,0 +1,1 @@
+﻿['product_id', 'title', 'category_id', 'description', 'image_link', 'price', 'discount', 'stock', 'seller_name', 'scraped_url']

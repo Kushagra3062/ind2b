@@ -18,3 +18,4 @@ uvicorn
 tqdm
 requests
 beautifulsoup4
+litellm

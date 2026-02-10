@@ -1,0 +1,19 @@
+﻿Warning: Could not load trained models ([Errno 2] No such file or directory: 'D:\\ind2b\\ind2b_recommender\\models\\tfidf_matrix.pkl'). Retraining on startup...
+--- Testing Query: 'they must be of endico' ---
+Parsed Filters: {
+  "intent": "search",
+  "search_term": "Endico drills",
+  "conversational_response": "Showing Endico drills for you!",
+  "min_price": null,
+  "max_price": null,
+  "brand": null,
+  "category": null
+}
+
+Final intent: search
+Found 5 products.
+- Endico 1350W 11500rpm Fiber Marble Cutter, SLOK20 (Brand: )
+- Endico 1350W 11500rpm Fiber Wood Cutter, SLOK30 (Brand: )
+- Miranda 2mm M35 Super Jobber Series HSS Parallel Shank Drill (Pack of 10) (Brand: )
+- Stanley 32mm 800W Percussion Drill, STDH8013 (Brand: )
+- Miranda 2mm M2 Standard Jobber Series HSS Parallel Shank Drill (Brand: )
