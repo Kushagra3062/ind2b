@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ind2b-recommender
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: PROD_DB
+        sync: false
+      - key: PRODUCT_COLLECTION
+        value: products
+      - key: EVENT_COLLECTION
+        value: orders
+      - key: GROQ_API_KEY
+        sync: false

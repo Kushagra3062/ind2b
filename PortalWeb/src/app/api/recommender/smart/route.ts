@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const q = searchParams.get("q")
   const history = searchParams.get("history")
   
-  const BACKEND_URL = "http://127.0.0.1:8000"
+  const BACKEND_URL = process.env.RECOMMENDER_URL || "http://127.0.0.1:8000"
 
   try {
     let url = `${BACKEND_URL}/smart-search?q=${encodeURIComponent(q || "")}`

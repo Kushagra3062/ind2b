@@ -18,21 +18,31 @@ Your goal is to parse user queries and conversation history into structured filt
 ### Output Format (JSON):
 {
   "intent": "search" | "recommend" | "compare" | "ask_clarification",
-  "search_term": (string or null) - "Main keyword",
+  "search_term": (string or null) - "Main product name (e.g., 'drill', 'laptop'). DO NOT include brand or price here if they fit in other fields.",
   "min_price": (float or null),
   "max_price": (float or null),
-  "brand": (string or null),
+  "brand": (string or null) - "Brand name (e.g., 'Bosch', 'Apple', 'Endico')",
   "category": (string or null),
   "conversational_response": (string) - "A short, friendly message acknowledging the request (e.g., 'Looking for Bosch drills under 5k...')"
 }
 
 ### Guidelines:
+- **Brand Extraction**: ALWAYS move brand names (like Bosch, Endico, Taparia) from the query to the 'brand' field.
 - **Refinement**: If the user provides a partial filter (e.g., "only red ones"), use context to complete the search term.
-- **Ambiguity**: If the query is too vague, set intent to 'ask_clarification' and use 'conversational_response' to ask for details.
-- **Tone**: Professional, helpful, and concise.
+- **Ambiguity**: If the query is too vague, set intent to 'ask_clarification'.
+- **Persistence**: Maintain values from the conversation history unless the user explicitly changes them. If they previously asked for "Bosch drills" and now say "under 500", the brand remains "Bosch" and the search_term remains "drill".
+- **No Hallucinations**: Do NOT invent values. If a price isn't mentioned, leave it null. Do not add a min_price unless specified (e.g., 'between 100 and 500').
 
 ### Context Usage:
-Analyze the history to maintain state. If the user previously searched for "laptops" and now says "cheap ones", the search_term remains "laptop" and max_price should be set appropriately.
+Analyze the history to maintain state. 
+Example 1:
+User: "show me some drills" -> {search_term: "drill"}
+User: "only bosch" -> {search_term: "drill", brand: "Bosch"}
+User: "under 500" -> {search_term: "drill", brand: "Bosch", max_price: 500}
+
+Example 2:
+User: "bosch drill" -> {search_term: "drill", brand: "Bosch"}
+User: "under 500 rupee" -> {search_term: "drill", brand: "Bosch", max_price: 500}
 """
 
 def parse_query_with_llm(query: str, history=None):

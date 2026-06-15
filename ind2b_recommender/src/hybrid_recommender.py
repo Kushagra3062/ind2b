@@ -244,16 +244,9 @@ def search_product(
             if count >= n:
                 break
     
-    # If vector search also returned nothing but we have filtered results (e.g. brand only query)
-    # Return the top filtered results
-    if not final_indices:
-        if not df.empty:
-            return (
-                df.head(n)
-                .fillna("")
-                .replace({np.nan: None})
-                .to_dict(orient="records")
-            )
+    # If vector search also returned nothing but we have a query, 
+    # then we couldn't find anything relevant within the filtered set.
+    if not final_indices and query:
         return []
 
     return (

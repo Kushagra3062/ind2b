@@ -4,8 +4,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const q = searchParams.get("q")
   
-  // Base URL of the Python backend
-  const BACKEND_URL = "http://127.0.0.1:8000"
+  const BACKEND_URL = process.env.RECOMMENDER_URL || "http://127.0.0.1:8000"
 
   try {
     let url = `${BACKEND_URL}/search?q=${encodeURIComponent(q || "")}`
